@@ -20,7 +20,7 @@ public class Controller {
     public TextArea ta_file;
     public Button btn_go;
 
-    File mFile;
+    private File mFile;
 
     public void chooseFileCLicked() {
         final FileChooser fileChooser = new FileChooser();
@@ -81,6 +81,7 @@ public class Controller {
         } catch (IOException e) {
             showError(e.getMessage());
             mFile = null;
+            ta_file.setText("");
             img_tick.setVisible(false);
         }
     }
