@@ -1,10 +1,12 @@
-import com.oracle.tools.packager.IOUtils;
-import javafx.scene.Node;
+package main;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import security.CryptoException;
+import security.CryptoUtils;
 
 import java.io.*;
 

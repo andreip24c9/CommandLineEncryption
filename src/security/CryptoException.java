@@ -1,3 +1,5 @@
+package security;
+
 public class CryptoException extends Exception {
 
     public CryptoException() {

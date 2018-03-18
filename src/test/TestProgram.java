@@ -1,3 +1,8 @@
+package test;
+
+import security.CryptoException;
+import security.CryptoUtils;
+
 import java.io.File;
 
 public class TestProgram {
