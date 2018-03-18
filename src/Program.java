@@ -38,7 +38,7 @@ public class Program extends Application {
         button = new Button();
         button.setText("Click me");
         button.setOnAction(event -> {
-            System.out.println("clicked");
+            AlertBox.display("Error", "File needs to be .txt");
         });
 
         StackPane layout = new StackPane();
