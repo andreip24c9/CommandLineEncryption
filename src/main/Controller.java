@@ -79,15 +79,19 @@ public class Controller {
             img_tick.setVisible(true);
             mFile = file;
         } catch (IOException e) {
+            resetScene();
             showError(e.getMessage());
-            mFile = null;
-            ta_file.setText("");
-            img_tick.setVisible(false);
         }
     }
 
     private void showError(String error) {
         AlertBox.display("Error", error);
+    }
+
+    private void resetScene(){
+        mFile = null;
+        ta_file.setText("");
+        img_tick.setVisible(false);
     }
 
     private static void configureFileChooser(final FileChooser fileChooser) {
