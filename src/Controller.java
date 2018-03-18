@@ -1,0 +1,96 @@
+import com.oracle.tools.packager.IOUtils;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+
+import java.io.*;
+
+public class Controller {
+
+    public Button btn_choose;
+    public ImageView img_tick;
+    public Button btn_encrypt;
+    public Button btn_decrypt;
+    public PasswordField tv_password;
+    public TextArea ta_file;
+    public Button btn_go;
+
+    File mFile;
+
+    public void chooseFileCLicked() {
+        final FileChooser fileChooser = new FileChooser();
+        configureFileChooser(fileChooser);
+        File file = fileChooser.showOpenDialog(btn_choose.getScene().getWindow());
+        if (file != null) {
+            openFile(file);
+        }
+    }
+
+    public void encryptClicked() {
+        btn_encrypt.setDefaultButton(true);
+        btn_decrypt.setDefaultButton(false);
+
+    }
+
+    public void decryptClicked() {
+        btn_encrypt.setDefaultButton(false);
+        btn_decrypt.setDefaultButton(true);
+    }
+
+    public void goClicked() {
+        String passPhrase = tv_password.getText();
+        if (mFile != null) {
+            if (passPhrase != null && passPhrase.length() > 0) {
+                try {
+                    if (btn_encrypt.isDefaultButton()) {
+                        CryptoUtils.encrypt(passPhrase, mFile, mFile);
+                    } else if (btn_decrypt.isDefaultButton()) {
+                        CryptoUtils.decrypt(passPhrase, mFile, mFile);
+                    }
+                    openFile(mFile);
+                } catch (CryptoException e) {
+                    showError(e.getMessage());
+                }
+            } else {
+                showError("Please provide a password");
+            }
+        } else {
+            showError("Please choose a file");
+        }
+    }
+
+    private void openFile(File file) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+
+            while (line != null) {
+                sb.append(line);
+                sb.append(System.lineSeparator());
+                line = br.readLine();
+            }
+            String everything = sb.toString();
+            ta_file.setText(everything);
+            img_tick.setVisible(true);
+            mFile = file;
+        } catch (IOException e) {
+            showError(e.getMessage());
+            mFile = null;
+            img_tick.setVisible(false);
+        }
+    }
+
+    private void showError(String error) {
+        AlertBox.display("Error", error);
+    }
+
+    private static void configureFileChooser(final FileChooser fileChooser) {
+        fileChooser.setTitle("View Files");
+        fileChooser.setInitialDirectory(
+                new File(System.getProperty("user.home"))
+        );
+    }
+}

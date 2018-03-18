@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="600.0" maxWidth="600.0" minHeight="100.0" minWidth="100.0" prefHeight="511.0" prefWidth="446.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="600.0" maxWidth="600.0" minHeight="100.0" minWidth="100.0" prefHeight="511.0" prefWidth="446.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
       <HBox prefHeight="28.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" text="Choose File" />
-            <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="btn_choose" mnemonicParsing="false" onAction="#chooseFileCLicked" text="Choose File" />
+            <ImageView fx:id="img_tick" fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@tick.png" />
                </image>
@@ -27,12 +27,12 @@
       </HBox>
       <HBox alignment="TOP_RIGHT" prefHeight="28.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" text="Encrypt">
+            <Button fx:id="btn_encrypt" defaultButton="true" mnemonicParsing="false" onAction="#encryptClicked" text="Encrypt">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Decrypt">
+            <Button fx:id="btn_decrypt" mnemonicParsing="false" onAction="#decryptClicked" text="Decrypt">
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>
@@ -47,10 +47,14 @@
             <Insets left="15.0" right="15.0" top="15.0" />
          </VBox.margin>
          <children>
-            <PasswordField prefHeight="27.0" prefWidth="147.0" promptText="Password" />
+            <PasswordField fx:id="tv_password" prefHeight="27.0" prefWidth="147.0" promptText="Password">
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin></PasswordField>
+            <Button fx:id="btn_go" mnemonicParsing="false" onAction="#goClicked" text="Go" />
          </children>
       </HBox>
-      <TextArea maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="406.0" prefWidth="463.0">
+      <TextArea fx:id="ta_file" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="406.0" prefWidth="463.0">
          <VBox.margin>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </VBox.margin>
