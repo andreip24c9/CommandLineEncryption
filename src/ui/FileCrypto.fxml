@@ -27,6 +27,7 @@
       </HBox>
       <HBox alignment="TOP_RIGHT" prefHeight="28.0" prefWidth="600.0">
          <children>
+            <CheckBox fx:id="cb_de_sters" mnemonicParsing="false" text="CheckBox" />
             <Button fx:id="btn_encrypt" defaultButton="true" mnemonicParsing="false" onAction="#encryptClicked" text="Encrypt">
                <HBox.margin>
                   <Insets />

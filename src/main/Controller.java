@@ -1,6 +1,7 @@
 package main;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -19,6 +20,7 @@ public class Controller {
     public PasswordField tv_password;
     public TextArea ta_file;
     public Button btn_go;
+    public CheckBox cb_de_sters;
 
     private File mFile;
 
